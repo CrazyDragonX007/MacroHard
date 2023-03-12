@@ -153,10 +153,10 @@ span.psw {
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<% if (!currentUser) { %>
-        	<li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        	<li><a href="/users/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         	<li><a onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in"></span> Login</a>
         		<div id="id01" class="modal">
-				  <form class="modal-content animate" action="/login" method="POST">
+				  <form class="modal-content animate" action="/users/login" method="POST">
 				    <div class="imgcontainer">
 				      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 				      <img src="#" alt="Avatar" class="avatar">
@@ -173,7 +173,7 @@ span.psw {
 				    </div>
 
 				    <div class="container" style="background-color:#f1f1f1">
-				      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn"><a href="/projects"></a>Cancel</button>
+				      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn"><a href="/"></a>Cancel</button>
 				    </div>
 				  </form>
 				</div>
@@ -193,7 +193,7 @@ span.psw {
         	<!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
         <%} else { %>
         	<li><a href="#">Currently logged in as <%= currentUser.username %></a></li>
-        	<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        	<li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         	<%}%>
       </ul>
     </div>
