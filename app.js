@@ -9,7 +9,9 @@ const passport = require("passport"), LocalStrategy = require("passport-local"),
     User = require("./models/user"),
     methodOverride = require("method-override"),
     flash = require("connect-flash");
-mongoose.connect("mongodb://localhost/macrohard",{useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect("mongodb://localhost/macrohard",{useNewUrlParser: true, useUnifiedTopology: true });
+const {db_string, port} = require('./config');
+mongoose.connect(db_string+"process?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true });
 app.set("view engine","ejs");
 app.use(bodyP.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
@@ -53,7 +55,7 @@ app.get("/contact",function(req,res){
 	res.render("contact");
 });
 
-app.listen(1400,function(){
+app.listen(port,function(){
     console.log("Server started");
 });
 
