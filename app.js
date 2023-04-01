@@ -1,18 +1,19 @@
-const alert = require("alert-node");
+require("alert-node");
 const exp = require("express");
 const app = exp();
+const path = require("path");
 const bodyP = require("body-parser"), mongoose = require("mongoose");
+require("passport-local-mongoose");
+require("./models/comment");
 const passport = require("passport"), LocalStrategy = require("passport-local"),
-    passportLocalMongoose = require("passport-local-mongoose"),
     User = require("./models/user"),
-    Comment = require("./models/comment"),
     methodOverride = require("method-override"),
     flash = require("connect-flash");
 mongoose.connect("mongodb://localhost/macrohard",{useNewUrlParser: true, useUnifiedTopology: true });
 app.set("view engine","ejs");
 app.use(bodyP.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
-app.use(exp.static('public'));
+app.use("/public", exp.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 // Authentication stuff
