@@ -11,7 +11,7 @@ const passport = require("passport"), LocalStrategy = require("passport-local"),
     flash = require("connect-flash");
 // mongoose.connect("mongodb://localhost/macrohard",{useNewUrlParser: true, useUnifiedTopology: true });
 const {db_string, port} = require('./config');
-mongoose.connect(db_string+"process?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(db_string,{useNewUrlParser: true, useUnifiedTopology: true }).then(()=>console.log("db connected"));
 app.set("view engine","ejs");
 app.use(bodyP.urlencoded({extended:true}));
 app.use(methodOverride("_method"));

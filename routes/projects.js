@@ -64,7 +64,7 @@ router.get("/:id",function(req,res){
 
 router.get("/:id/edit",isOwner,function(req,res){
     // console.log(project.findById(req.params.id));
-    var proj=project.findById(req.params.id,function(err,found){
+    project.findById(req.params.id,function(err,found){
         if(err){
             console.log(err);
         }else{
@@ -78,7 +78,7 @@ router.put("/:id",isOwner,function(req,res){
         if(err){
             console.log(err);
         }else{
-            res.redirect("/"+req.params.id);
+            res.redirect("/projects/"+req.params.id);
         }
     })
 });

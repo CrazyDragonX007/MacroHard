@@ -1,4 +1,5 @@
 const Comment = require("../models/comment");
+const Project = require("../models/project");
 
 exports.isLoggedIn=function(req, res, next){
     if(req.isAuthenticated()){
@@ -10,7 +11,7 @@ exports.isLoggedIn=function(req, res, next){
 
 exports.isOwner=function(req,res,next){
     if(req.isAuthenticated()){
-        project.findById(req.params.id,function(err,proj){
+        Project.findById(req.params.id,function(err,proj){
             if(err){
                 console.log(err);
             }else{
