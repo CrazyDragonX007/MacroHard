@@ -12,8 +12,6 @@ router.post("/register", function(req, res){
     User.register(new User({username: req.body.username, email: req.body.email, contact: req.body.contact}), req.body.password, function(err, user){
         if(err){
             alert(err.message);
-            // var a=String(err.message);
-            // alert("error");
             console.log(err);
             return res.render('register');
         }

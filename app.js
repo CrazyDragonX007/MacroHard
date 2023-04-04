@@ -10,7 +10,7 @@ const passport = require("passport"), LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
     flash = require("connect-flash");
 // mongoose.connect("mongodb://localhost/macrohard",{useNewUrlParser: true, useUnifiedTopology: true });
-const {db_string, port} = require('./config');
+const {db_string, port, session_secret} = require('./config');
 mongoose.connect(db_string,{useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false }).then(()=>console.log("db connected"));
 app.set("view engine","ejs");
 app.use(bodyP.urlencoded({extended:true}));
@@ -21,7 +21,7 @@ app.use(flash());
 // Authentication stuff
 
 app.use(require("express-session")({
-    secret: "abcd",
+    secret: session_secret,
     resave: false,
     saveUninitialized: false
 }));
