@@ -1,8 +1,10 @@
 <%- include('header'); -%>
-<h1>Software projects currently available for purchase</h1>
+<center>
+<h1>Software projects currently available</h1>
 <% projects.forEach(function(project){ %>
-    <h1><%= project.title %></h2>
-    <h2><%=project.price%></h2>
+    <h2><%= project.title %></h2>
+    <h2>Price: <%=project.price%></h2>
     <h3>Submitted By <em><%=project.author.username%></em></h3>
     <a href="/projects/<%= project._id %>">More info!</a>
 <% }); %>
+</center>
