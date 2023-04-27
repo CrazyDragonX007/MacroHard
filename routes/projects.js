@@ -30,8 +30,10 @@ router.get("/Hardprojects",function(req,res){
     )});
 
 router.post("/",uploadImage.single('image'),function(req,res){
-    console.log(req.file);
-    const imagePath = req.file.location;
+    let imagePath = null;
+    if(req.file) {
+        imagePath = req.file.location;
+    }
     const title = req.body.title, description = req.body.description, cat = req.body.category, price = req.body.price,
         author = {
             id: req.user._id,
