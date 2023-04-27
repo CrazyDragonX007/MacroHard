@@ -4,6 +4,7 @@ const project = require("../models/project");
 const exp = require("express");
 const router = exp.Router();
 const {isOwner,isCommOwner,isLoggedIn} = require("../utils/auth");
+const {uploadImage} = require("../utils/s3");
 router.get("/new",isLoggedIn,function(req,res){
     res.render("new");
 });
@@ -28,17 +29,20 @@ router.get("/Hardprojects",function(req,res){
         }
     )});
 
-router.post("/",isLoggedIn,function(req,res){
+router.post("/",uploadImage.single('image'),function(req,res){
+    console.log(req.file);
+    const imagePath = req.file.location;
     const title = req.body.title, description = req.body.description, cat = req.body.category, price = req.body.price,
         author = {
             id: req.user._id,
             username: req.user.username
-        }, newProject = {title: title, description: description, category: cat, price: price, author: author};
+        }, newProject = {title: title, description: description, category: cat, price: price, author: author, imagePath:imagePath};
     project.create(newProject,function(err,newP){
         if(err){
             console.log(err);
         }else{
             res.redirect("/");
+            req.flash("Successfully created new project");
         }
     });
 });
